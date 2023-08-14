@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authors in Archive</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
+  </style>
+</head>
+<body>
+  <header class="flx gap-2">
+    <h1>Book Archive</h1>
+    <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" id="bookshelf-img">
+  </header>
+  <main class="flx gap-2">
+    <div class="card sm-card row">
+      <h2 class="mb mt">New Author</h2>
+      
+      <form action="/add/author" method="post" class="flx col">
+        
+        <label for="">
+          <span>First Name</span>
+          <input type="text" name="first_name" id="first_name" placeholder="first name..." value="">
+        </label>
+        
+        <label for="">
+          <span>First Name</span>
+          <input type="text" name="first_name" id="first_name" placeholder="first name..." value="">
+        </label>
+        
+        <label for="">
+          <span>Length</span>
+          <input type="number" name="book_length" id="pages" placeholder="how many pages...">
+        </label>
+        <div class="flx row gap-3 mt vert-cent">
+          <button type="submit" class="btn w-100 mt">Add Author</button>
+          
+        </div>
+      </form>
+
+    </div>
+    <div class="card sm-card row">
+      <h2 class="mb mt">Authors in Archive</h2>
+      <table class="font-mono">
+        <thead>
+          <tr>
+            <th>Authors</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in db %}
+          <tr>
+            
+            <td>{{ authors.last_name }}, {{ authors.first_name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <footer>
+    <div class="flx col vert-cent gap-2">
+      <span>
+        <a href="#">Books in Archive</a>
+      </span>
+      <img src="./static/resources/images/3563199.png" alt="small, vector graphic of an open book" id="book-img">
+    </div>
+  </footer>
+</body>
+</html>
