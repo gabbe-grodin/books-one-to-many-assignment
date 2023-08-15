@@ -24,7 +24,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	/* vertical-align: baseline; */
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	/* line-height: 1; */
 }
 ol, ul {
 	list-style: none;
@@ -99,13 +99,14 @@ body {
 main {
   margin: 0px auto;
   justify-content: center;
-  padding: 15px;
+  /* padding: 15px; */
   /* height: 800px; */
   /* background-color: rgb(255, 0, 0); */
 }
 
 .container {
   width: 900px;
+  justify-content: flex-start;
 }
 
 .flx {
@@ -132,6 +133,10 @@ main {
   gap: 3rem;
 }
 
+.gap-4 {
+  gap: 4rem;
+}
+
 .mt {
   margin-top: 20px;
 }
@@ -154,7 +159,7 @@ main {
 }
 
 .w-100 {
-  width: 90%;
+  width: 100%;
 }
 
 .hidden {
@@ -175,8 +180,8 @@ main {
 }
 
 #book-img {
-  width: 75px;
-  height: 55px;
+  width: 145px;
+  height: 105px;
 }
 
 /*******************************************/
@@ -186,19 +191,18 @@ main {
 .card {
   background-color: cornsilk;
   color: rgb(175, 66, 66);
-  min-height: 500px;
-  width: 500px;
-  padding: 15px;
+  /* min-height: 600px;
+  width: 500px; */
+  padding: 30px;
   border-radius: 18px;
-  line-height: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px; */
   box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 
 .sm-card {
-  height: 300px;
+  height: 500px;
   width: 400px;
 }
 
@@ -220,7 +224,7 @@ label {
 
 input, .input {
   font-family: monospace;
-  width: 90%;
+  width: 95%;
   height: 36px;
   margin: 10px 0;
   font-size: 18px;
@@ -265,24 +269,41 @@ input, .input {
 
 table {
   width: 100%;
+  max-height: 400px;
+}
+
+table thead, tbody tr {
+  /* border-bottom: 2px solid gray; */
 }
 
 table thead tr th {
-  text-align: left;
-  font-size: 2rem;
+  /* text-align: left; */
+  /* font-size: 2rem; */
+  /* padding-right: 23px; */
 }
 
-table tbody tr td {
-
-  font-size: 2rem;
-  line-height: 120%;
-  padding: 5px;
+table tbody tr {
+  color: brown;
 }
 
 table tbody tr:hover {
   background-color: black;
 }
 
+table tr td {
+  /* padding: 0px;
+  margin: 0px; */
+}
+
+table {
+  /* height: inherit; */
+  display: block;
+  overflow: scroll;
+
+}
+.title {
+  font-style: italic;
+}
 /*******************************************/
 /*! MY BUTTONS
 /*******************************************/
@@ -321,7 +342,7 @@ table tbody tr:hover {
 
 a {
   text-decoration: underline;
-  color: white;
+  /* color: white; */
 }
 
 a:hover {
@@ -336,7 +357,6 @@ header, header a {
   margin: 30px auto;
   padding: 15px;
   color: brown;
-  justify-content: center;
   align-items: baseline;
   /* box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px; */
   /* padding: 15px; */

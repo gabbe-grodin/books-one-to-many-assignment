@@ -9,33 +9,31 @@
     @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
   </style>
 </head>
+
 <body>
-  <header class="flx gap-2">
-    <h1>Book Archive</h1>
+  <header class="flx container gap-3">
+    <h1 class="mb ml">Book Archive</h1>
     <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" id="bookshelf-img">
   </header>
-  <main class="flx gap-2">
+  <main class="flx gap-3">
     <div class="card sm-card row">
       <h2 class="mb mt">New Author</h2>
       
       <form action="/add/author" method="post" class="flx col">
-        
         <label for="">
-          <span>First Name</span>
-          <input type="text" name="first_name" id="first_name" placeholder="first name..." value="">
-        </label>
-        
-        <label for="">
-          <span>First Name</span>
-          <input type="text" name="first_name" id="first_name" placeholder="first name..." value="">
+          <span>Name</span>
+          <input type="text" name="name" id="name" placeholder="author's name..." value="">
         </label>
         
         <label for="">
           <span>Length</span>
           <input type="number" name="book_length" id="pages" placeholder="how many pages...">
         </label>
+
         <div class="flx row gap-3 mt vert-cent">
-          <button type="submit" class="btn w-100 mt">Add Author</button>
+          <button type="submit" class="btn w-100 mt">
+            Add Author
+          </button>
           
         </div>
       </form>
@@ -50,10 +48,9 @@
           </tr>
         </thead>
         <tbody>
-          {% for row in db %}
+          {% for each_author in all_authors %}
           <tr>
-            
-            <td>{{ authors.last_name }}, {{ authors.first_name }}</td>
+            <td>{{ authors.name }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -63,7 +60,7 @@
   <footer>
     <div class="flx col vert-cent gap-2">
       <span>
-        <a href="#">Books in Archive</a>
+        <a href="/books">Books in Archive</a>
       </span>
       <img src="./static/resources/images/3563199.png" alt="small, vector graphic of an open book" id="book-img">
     </div>
