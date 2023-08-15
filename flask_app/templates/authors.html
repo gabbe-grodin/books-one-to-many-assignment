@@ -24,23 +24,21 @@
           <span>Name</span>
           <input type="text" name="name" id="name" placeholder="author's name..." value="">
         </label>
-        
         <label for="">
           <span>Length</span>
           <input type="number" name="book_length" id="pages" placeholder="how many pages...">
         </label>
-
         <div class="flx row gap-3 mt vert-cent">
           <button type="submit" class="btn w-100 mt">
             Add Author
           </button>
-          
         </div>
       </form>
 
     </div>
     <div class="card sm-card row">
       <h2 class="mb mt">Authors in Archive</h2>
+      
       <table class="font-mono">
         <thead>
           <tr>
@@ -55,8 +53,10 @@
           {% endfor %}
         </tbody>
       </table>
+    
     </div>
   </main>
+  
   <footer>
     <div class="flx col vert-cent gap-2">
       <span>
@@ -65,5 +65,6 @@
       <img src="./static/resources/images/3563199.png" alt="small, vector graphic of an open book" id="book-img">
     </div>
   </footer>
+  
 </body>
 </html>
