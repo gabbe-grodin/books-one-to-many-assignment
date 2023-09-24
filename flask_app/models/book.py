@@ -27,7 +27,8 @@ class Book:
     @classmethod
     def get_all_books(cls):
         query="""
-            SELECT * FROM books"""
+            SELECT * FROM books
+            ORDER BY books.title"""
         result=connectToMySQL(cls.db).query_db(query)
         print("RESULTS: ", result)
         books=[]

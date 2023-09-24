@@ -24,7 +24,8 @@ class Author:
     @classmethod
     def get_all_authors(cls):
         query ="""
-            SELECT * FROM authors"""
+            SELECT * FROM authors
+            ORDER BY authors.name"""
         result = connectToMySQL(cls.db).query_db(query)
         authors = []
         for author in result:

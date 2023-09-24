@@ -184,6 +184,11 @@ main {
   height: 105px;
 }
 
+#author-img {
+  width: 145px;
+  height: 145px;
+}
+
 /*******************************************/
 /*! MY CARDS
 /*******************************************/
@@ -342,8 +347,8 @@ table {
 /*******************************************/
 
 a {
-  text-decoration: underline;
-  /* color: white; */
+  text-decoration: none;
+  color: inherit;
 }
 
 a:hover {
