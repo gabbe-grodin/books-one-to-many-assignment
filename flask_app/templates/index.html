@@ -10,7 +10,8 @@
   </style>
 </head>
 
-<!--! TO DOS: ADD CREATE AND READ FUNCTIONALITY TO AUTHORS BUILD HTML VIEWS OF ONE AUTHOR AND FAVS AND ONE BOOK AND WHO HAS FAV'D IT THEN BUILD MANY TO MANY RELATIONSHIP WITH FAVORITES; LOOK INTO BETTER STYLE OPTIONS FOR 'OVERFLOW: SCROLL' AND TABLES IN GENERAL -->
+<!--! TO DOS: BUILD HTML VIEWS OF ONE AUTHOR AND FAVS AND ONE BOOK AND WHO HAS FAV'D IT; LOOK INTO BETTER STYLE OPTIONS FOR 'OVERFLOW: SCROLL' AND TABLES IN GENERAL; HTML VALIDATION; PREVENT CIRCULAR IMPORTS -->
+<!-- * completed tasks: applied restful routing; added create functionality; updated task list; -->
 
 <body>
   <header class="flx container gap-3">
@@ -22,7 +23,7 @@
       <h2 class="mb mt">New Book</h2>
       <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
 
-      <form action="/add/book" method="post" class="flx col">
+      <form action="/book/create" method="post" class="flx col">
         <label for="title">
           <span>Title</span>
           <input type="text" name="title" id="title" placeholder="new book title...">
@@ -40,7 +41,7 @@
     <div class="card sm-card">
       <h2 class="mb mt">Archived</h2>
       
-      <table>
+      <table class="font-mono">
         <thead>
           <tr>
             <th>ID</th>
@@ -54,9 +55,6 @@
             <td class="title">{{ book.title }}</td>
           </tr>
           {% endfor %}
-          <tr></tr>
-          <tr></tr>
-          <tr></tr>
         </tbody>
       </table>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Authors in Archive</title>
+  <title>Authors</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
@@ -19,14 +19,10 @@
     <div class="card sm-card row">
       <h2 class="mb mt">New Author</h2>
       
-      <form action="/add/author" method="post" class="flx col">
-        <label for="">
+      <form action="/author/create" method="post" class="flx col">
+        <label for="name">
           <span>Name</span>
           <input type="text" name="name" id="name" placeholder="author's name..." value="">
-        </label>
-        <label for="">
-          <span>Length</span>
-          <input type="number" name="book_length" id="pages" placeholder="how many pages...">
         </label>
         <div class="flx row gap-3 mt vert-cent">
           <button type="submit" class="btn w-100 mt">
@@ -46,9 +42,9 @@
           </tr>
         </thead>
         <tbody>
-          {% for each_author in all_authors %}
+          {% for author in all_authors %}
           <tr>
-            <td>{{ authors.name }}</td>
+            <td>{{ author.name }}</td>
           </tr>
           {% endfor %}
         </tbody>

@@ -14,21 +14,20 @@ class Book:
         self.faved_by=[]
 
     @classmethod
-    def add_book_to_db(cls,data):
+    def add_new_book(cls,data):
         query="""
-              INSERT INTO books(title,pages)
-              VALUES(%(title)s,%(pages)s)
-              """
-        data={"title":data["title"],
-              "pages":data["pages"]}
+            INSERT INTO books(title,pages)
+            VALUES(%(title)s,%(pages)s)"""
+        data={
+            "title":data["title"],
+            "pages":data["pages"]}
         result=connectToMySQL(cls.db).query_db(query,data)
         return result
     
     @classmethod
     def get_all_books(cls):
         query="""
-              SELECT * FROM books
-              """
+            SELECT * FROM books"""
         result=connectToMySQL(cls.db).query_db(query)
         print("RESULTS: ", result)
         books=[]
