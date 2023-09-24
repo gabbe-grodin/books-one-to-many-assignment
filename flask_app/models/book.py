@@ -33,5 +33,5 @@ class Book:
         books=[]
         for book in result:
             books.append(cls(book))
-            print("HERE ARE ALL THE BOOKS:",books)
+        print("HERE ARE ALL THE BOOKS:",books)
         return books

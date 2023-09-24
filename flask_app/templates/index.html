@@ -3,71 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Archive</title>
+  <title>Authors</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
   </style>
 </head>
 
-<!--! TO DOS: BUILD HTML VIEWS OF ONE AUTHOR AND FAVS AND ONE BOOK AND WHO HAS FAV'D IT; LOOK INTO BETTER STYLE OPTIONS FOR 'OVERFLOW: SCROLL' AND TABLES IN GENERAL; HTML VALIDATION; PREVENT CIRCULAR IMPORTS -->
-<!-- * completed tasks: applied restful routing; added create functionality; updated task list; -->
+<!--! TO DOS: ADD FAV FUNCTIONALITY; HTML VALIDATION; PREVENT CIRCULAR IMPORTS -->
+<!-- * completed tasks: applied restful routing; added create functionality; updated task list; moved print statements outside of loops; fixed some styling on tables; improved readability in html code; linked books and authors to individual views -->
 
 <body>
+
+  <!-- ? HEADER START -->
+
   <header class="flx container gap-3">
     <h1 class="mb ml">Book Archive</h1>
     <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" id="bookshelf-img">
   </header>
+  <!-- ? HEADER END -->
+
+
+
+  <!-- ? MAIN START -->
+
   <main class="flx gap-3">
     <div class="card sm-card row">
-      <h2 class="mb mt">New Book</h2>
-      <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
+      <h2 class="mb mt">New Author</h2>
+      
 
-      <form action="/book/create" method="post" class="flx col">
-        <label for="title">
-          <span>Title</span>
-          <input type="text" name="title" id="title" placeholder="new book title...">
+
+      <!-- ? FORM TO ADD AUTHOR START -->
+
+      <form action="/author/create" method="post" class="flx col">
+        <label for="name">
+          <span>Name</span>
+          <input type="text" name="name" id="name" placeholder="author's name..." value="">
         </label>
-        <label for="pages">
-          <span>Length</span>
-          <input type="number" name="pages" id="pages" placeholder="how many pages..." value="pages">
-        </label>
-        <div class="flx col gap-3 mt vert-cent">
-          <button type="submit" class="btn w-100 mt mb">Add Title</button>
+        <div class="flx row gap-3 mt vert-cent">
+          <button type="submit" class="btn w-100 mt">
+            Add Author
+          </button>
         </div>
       </form>
-      
+      <!-- ? FORM END -->
+
     </div>
-    <div class="card sm-card">
-      <h2 class="mb mt">Archived</h2>
+    <div class="card sm-card row">
+      <h2 class="mb mt">Authors</h2>
       
+
+
+      <!-- ? TABLE OF AUTHORS START -->
+
       <table class="font-mono">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-          </tr>
-        </thead>
         <tbody>
-          {% for book in book_list %}
-          <tr>
-            <td>{{ book.id }}</td>
-            <td class="title">{{ book.title }}</td>
-          </tr>
+          {% for author in all_authors %}
+            <tr>
+              <td>
+                <a href="/author/{{ author.id }}">{{ author.name }}</a></td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
-
+      <!-- ? TABLE END -->
+    
     </div>
   </main>
-  
+  <!-- ? MAIN END -->
+
+
+
+  <!-- ? FOOTER START -->
+
   <footer>
     <div class="flx col vert-cent gap-2">
       <span>
-        <a href="/authors">Authors in Archive</a>
+        <a href="/books">Books</a>
       </span>
+      <img src="./static/resources/images/3563199.png" alt="small, vector graphic of an open book" id="book-img">
     </div>
   </footer>
+  <!-- ? FOOTER END -->
 
 </body>
 </html>

@@ -12,7 +12,7 @@ from flask_app.models import book, author
 def show_all_books():
     all_books=book.Book.get_all_books()
     print(all_books[0], "*"*20)
-    return render_template('index.html',book_list = all_books)
+    return render_template('books.html',book_list = all_books)
 
 # ! INVISIBLE (CREATE)
 @app.route('/book/create', methods=['POST'])

@@ -298,11 +298,12 @@ table tr td {
 table {
   /* height: inherit; */
   display: block;
-  overflow: scroll;
+  overflow-y: scroll;
 
 }
 .title {
   font-style: italic;
+  text-align: justify;
 }
 /*******************************************/
 /*! MY BUTTONS

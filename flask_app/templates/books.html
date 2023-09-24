@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Archive</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
+  </style>
+</head>
+
+<body>
+
+  <!-- ? HEADER START -->
+
+  <header class="flx container gap-3">
+    <h1 class="mb ml">Book Archive</h1>
+    <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" id="bookshelf-img">
+  </header>
+  <!-- ? HEADER END -->
+
+
+
+  <!-- ? MAIN START -->
+
+  <main class="flx gap-3">
+    <div class="card sm-card row">
+      <h2 class="mb mt">New Book</h2>
+      <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
+
+
+
+      <!-- ? FORM START -->
+
+      <form action="/book/create" method="post" class="flx col">
+        <label for="title">
+          <span>Title</span>
+          <input type="text" name="title" id="title" placeholder="new book title...">
+        </label>
+        <label for="pages">
+          <span>Length</span>
+          <input type="number" name="pages" id="pages" placeholder="how many pages..." value="pages">
+        </label>
+        <div class="flx col gap-3 mt vert-cent">
+          <button type="submit" class="btn w-100 mt mb">Add Title</button>
+        </div>
+      </form>
+      <!-- ? FORM END -->
+      
+    </div>
+    <div class="card sm-card">
+      <h2 class="mb mt">Books</h2>
+      
+
+
+      <!-- ? TABLE OF RESULTS START -->
+
+      <table class="font-mono">
+        <!-- <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+          </tr>
+        </thead> -->
+        <tbody>
+          {% for book in book_list %}
+          <tr>
+            <!-- <td>
+              <a href="/book/{{ book.id }}">{{ book.id }}</a>              
+            </td> -->
+            <td>
+              <a href="/book/{{ book.id }}">
+                <span class="title">{{ book.title }}</span>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- ? TABLE END -->
+
+    </div>
+  </main>
+  <!-- ? MAIN END -->
+
+
+
+  <!-- ? FOOTER START -->
+
+  <footer>
+    <div class="flx col vert-cent gap-2">
+      <span>
+        <a href="/">Authors</a>
+      </span>
+    </div>
+  </footer>
+  <!-- ? FOOTER END -->
+
+
+</body>
+</html>
