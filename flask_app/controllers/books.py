@@ -11,7 +11,7 @@ from flask_app.models import book, author
 @app.route('/books')
 def show_all_books():
     all_books=book.Book.get_all_books()
-    print(all_books[0], "*"*20)
+    # print(all_books[0], "*"*20)
     return render_template('books.html',book_list = all_books)
 
 # ! INVISIBLE (CREATE)
@@ -24,6 +24,6 @@ def add_book():
 # ! SHOW ALL AUTHORS WHO HAVE FAVORED IT (READ)
 # ! FORM VIEW (dropdown of all authors who haven't yet favored?)
 @app.route('/book/<int:id>')
-def view_one_book(id):
-    this_book = book.Book.get_one_book_by_id_with_favoring_authors(id)
+def show_one_book_with_faving_authors(id):
+    this_book = book.Book.get_one_book_with_favoring_authors(id)
     return render_template('one_book.html', book = this_book)

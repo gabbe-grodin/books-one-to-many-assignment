@@ -14,12 +14,21 @@ def home():
 @app.route('/author/create', methods=['POST'])
 def add_author():
     author.Author.add_new_author(request.form)
-    return redirect('/')
+    return redirect("/")
+    # return redirect(f"/author/{request.form['id']}")
 
 # ! SHOW ONE AUTHOR (READ)
 # ! SHOW ALL FAVORED BOOKS
 # ! FORM VIEW
 @app.route('/author/<int:id>')
 def view_one_author(id):
-    this_author = author.Author.get_one_author_with_favored_books(id)
-    return render_template('one_author.html', author = this_author)
+    # this_authors_favs = author.Author.get_one_author_with_favored_books(id)
+    # return render_template('one_author.html', author = this_authors_favs)
+    author.Author.get_one_author_by_id(id)
+    return render_template('one_author.html')
+
+# ! INVISIBLE (CREATE ASSOCIATION)
+# @app.route('/author/<int:id>/picks/fav', methods=['POST'])
+# def author_picks_a_favorite():
+#     return redirect('/') # temp
+    # return redirect('/author/<int:id>')

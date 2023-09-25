@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ author.name }}</title>
+    <title>Author Page</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
@@ -25,7 +25,7 @@
 
     <main class="flx gap-3">
         <div class="card sm-card row">
-        <h2 class="mb mt">{{ author.name }}</h2>
+        <h2 class="mb mt">{#{{ author.name }}#}</h2>
         <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
 
 
@@ -41,13 +41,13 @@
             </tr>
             </thead>
             <tbody>
-            {% for book in this_authors_favorite_books %}
+            {#{% for book in this_author.favorite_books %}
                 <tr>
                     <td>{{ book.id }}</td>
                     <td class="title">{{ book.title }}</td>
                     <td>{{ book.pages }}</td>
                 </tr>
-            {% endfor %}
+            {% endfor %}#}
             </tbody>
         </table>
         <!-- ? TABLE END -->
@@ -60,14 +60,14 @@
 
         <!-- ? FORM DROPDOWN START -->
 
-        <form action="">
+        <form action="" method="post">
             <label for="title">Book</label>
             <select name="book" id="">
-                {% for book not in this_authors_favorite_books %}
+                {#{% for book in this_author.favorite_books %}
                     <option value="{{}}">
                         {{ book.title }}
                     </option>
-                {% endfor %}
+                {% endfor %}#}
             </select>
             <button type="submit">Add this book to favorites/ heart</button>
         </form>
@@ -84,7 +84,7 @@
     <footer>
         <div class="flx col vert-cent gap-2">
         <span>
-            <a href="/authors">Authors in Archive</a>
+            <a href="/">Home</a>
         </span>
         </div>
     </footer>

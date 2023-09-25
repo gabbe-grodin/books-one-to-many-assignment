@@ -30,23 +30,41 @@ class Author:
         authors = []
         for author in result:
             authors.append(cls(author))
-        print("HERE ARE ALL THE AUTHORS:", authors)
+        # print("HERE ARE ALL THE AUTHORS:", authors)
         return authors
     
     @classmethod
-    def get_one_author_with_favored_books(cls, id):
-        query ="""
-            SELECT * FROM books
-            LEFT JOIN favorites
-            ON favorites.book_id = books.id
-            LEFT JOIN authors
-            ON favorites.author_id = authors.id
-            WHERE books.id = %(id)s"""
+    def get_one_author_with_favored_books(cls):
+    # def get_one_author_with_favored_books(cls,data):
+        # query ="""
+        #     SELECT * FROM authors
+        #     LEFT JOIN favorites
+        #     ON favorites.author_id = authors.id
+        #     LEFT JOIN books
+        #     ON favorites.book_id = books.id
+        #     WHERE authors.id = %(id)s"""
+        # data={
+        #     "id": ["favorites.id"],
+        #     "title": ["title"],
+        #     "pages": ["pages"],
+        #     "created_at": ["favorites.created_at"],
+        #     "updated_at": ["favorites.updated_at"]}
+        # results = connectToMySQL(cls.db).query_db(query,data)
+        # this_authors_favs = []
+        # for a_book in results:
+        #     this_authors_favs.favorite_books.append(cls(a_book))
+        # print("HERE ARE THIS AUTHORS FAVORITE BOOKS:", this_authors_favs)
+        # return this_authors_favs
+        pass
+
+    @classmethod
+    def get_one_author_by_id(cls,id):
+        query="""
+            SELECT * FROM authors
+            WHERE authors.id = %(id)s"""
         data={
-            "id": data["id"]}
-        results = connectToMySQL(cls.db).query_db(query,id)
-        favorite_books = [] # why do i need this when i have line 13? or what is the difference?
-        for row in results:
-            favorite_books.append(cls(book))
-        print("HERE ARE THIS AUTHORS FAVORITE BOOKS:", favorite_books)
-        return favorite_books
+            "id": id
+        }
+        result = connectToMySQL(cls.db).query_db(query,data)
+        this_author = result[0]
+        return this_author

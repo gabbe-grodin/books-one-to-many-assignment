@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
+    </style>
+</head>
+<body>
+
+    <!-- ? HEADER START -->
+
+    <header class="flx container gap-3">
+        <h1 class="mb ml">Book Archive</h1>
+        <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" id="bookshelf-img">
+    </header>
+    <!-- ? HEADER END -->
+
+
+
+    <!-- ? MAIN START -->
+
+    <main class="flx gap-3">
+        <div class="card sm-card row">
+        <h2 class="mb mt">Title: "{{ book.title }}"":</h2>
+        <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
+        <h3>Number of pages: {{ book.pages }}</h3>
+        <h3>Authors who have chosen this title as a favorite book:</h3>
+
+
+        <!-- ? TABLE OF AUTHORS WHO FAVED START -->
+
+        <table class="font-mono">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Author's name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in this_book.faved_by %}
+                    <tr>
+                        <td>{{ author.id }}</td>
+                        <td>{{ author.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- ? TABLE END -->
+        
+        </div>
+        <div class="card sm-card">
+        <h2 class="mb mt">Add Author's Favorite</h2>
+        
+
+
+        <!-- ? FORM DROPDOWN START -->
+
+        <form action="/favorite" method="post">
+            <label for="title">Authors yet to favorite this title:</label>
+            <select name="book" id="">
+                {% for author not in this_book.faved_by %}
+                    <option value="{{ author.name }}">
+                        {{ author.name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add this book to an author's favorites</button>
+        </form>
+        <!-- ? FORM END -->
+
+        </div>
+    </main>
+    <!-- ? MAIN END -->
+
+
+
+    <!-- ? FOOTER START -->
+
+    <footer>
+        <div class="flx col vert-cent gap-2">
+        <span>
+            <a href="/">Home</a>
+        </span>
+        </div>
+    </footer>
+    <!-- ? FOOTER END -->
+
+</body>
+</html>
