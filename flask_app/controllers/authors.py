@@ -22,13 +22,14 @@ def add_author():
 # ! FORM VIEW
 @app.route('/author/<int:id>')
 def view_one_author(id):
-    # this_authors_favs = author.Author.get_one_author_with_favored_books(id)
-    # return render_template('one_author.html', author = this_authors_favs)
-    author.Author.get_one_author_by_id(id)
-    return render_template('one_author.html')
+    this_author = []
+    author.Author.get_one_author_with_favored_books(id)
+    print("class method called", *30)
+    return render_template('one_author.html', this_author = this_author)
+    # author.Author.get_one_author_with_favored_books(id)
+    # return render_template('one_author.html', this_author = favorite_books)
 
-# ! INVISIBLE (CREATE ASSOCIATION)
-# @app.route('/author/<int:id>/picks/fav', methods=['POST'])
-# def author_picks_a_favorite():
-#     return redirect('/') # temp
-    # return redirect('/author/<int:id>')
+# ! INVISIBLE (CREATE)
+@app.route('/author/<int:id>/picks/fav', methods=['POST'])
+def author_picks_a_favorite():
+    return redirect(f"/author/{request.form['id']}")

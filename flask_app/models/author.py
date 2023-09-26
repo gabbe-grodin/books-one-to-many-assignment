@@ -34,37 +34,40 @@ class Author:
         return authors
     
     @classmethod
-    def get_one_author_with_favored_books(cls):
-    # def get_one_author_with_favored_books(cls,data):
-        # query ="""
-        #     SELECT * FROM authors
-        #     LEFT JOIN favorites
-        #     ON favorites.author_id = authors.id
-        #     LEFT JOIN books
-        #     ON favorites.book_id = books.id
-        #     WHERE authors.id = %(id)s"""
-        # data={
-        #     "id": ["favorites.id"],
-        #     "title": ["title"],
-        #     "pages": ["pages"],
-        #     "created_at": ["favorites.created_at"],
-        #     "updated_at": ["favorites.updated_at"]}
-        # results = connectToMySQL(cls.db).query_db(query,data)
-        # this_authors_favs = []
-        # for a_book in results:
-        #     this_authors_favs.favorite_books.append(cls(a_book))
-        # print("HERE ARE THIS AUTHORS FAVORITE BOOKS:", this_authors_favs)
-        # return this_authors_favs
-        pass
-
-    @classmethod
-    def get_one_author_by_id(cls,id):
-        query="""
+    def get_one_author_with_favored_books(cls,data):
+        query ="""
             SELECT * FROM authors
-            WHERE authors.id = %(id)s"""
-        data={
-            "id": id
-        }
-        result = connectToMySQL(cls.db).query_db(query,data)
-        this_author = result[0]
+            LEFT JOIN favorites
+            ON authors.id = favorites.author_id
+            LEFT JOIN books AS favorite_books
+            ON favorites.book_id = favorite_books.id
+            WHERE authors.id = %(id)s;"""
+        results = connectToMySQL(cls.db).query_db(query, data) # Result will be a list of book        objects with the faving author attached to each row
+        # print(results)
+        this_author = Author(results[0]) # Create an instance of the author class
+        data.faved_by = this_author
+        print(this_author)
+        for book_row in results: # make instances of books this authored faved and add them into our list of this authors favorite books
+            if book_row['books.id']:
+                data= {
+                    "id": book_row["faved_by.id"],
+                    "title": book_row["title"],
+                    "pages": book_row["pages"],
+                    "created_at": book_row["faved_by.created_at"],
+                    "updated_at": book_row["faved_by.updated_at"]}
+                this_author.favorite_books.append(cls(data))
+        print("HERE ARE THIS AUTHORS FAVORITE BOOKS:", this_author)
         return this_author
+        
+
+    # @classmethod
+    # def get_one_author_by_id(cls,id):
+    #     query="""
+    #         SELECT * FROM authors
+    #         WHERE authors.id = %(id)s"""
+    #     data={
+    #         "id": id
+    #     }
+    #     result = connectToMySQL(cls.db).query_db(query,data)
+    #     this_author = result[0]
+    #     return this_author

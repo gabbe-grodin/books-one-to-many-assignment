@@ -38,7 +38,8 @@ class Book:
         return books
     
     @classmethod
-    def get_one_book_with_favoring_authors(cls, faving_author_data):
+    def get_one_book_with_favoring_authors(cls, id):
+        print()
         query = """
             SELECT * FROM books
             LEFT JOIN favorites
@@ -46,17 +47,21 @@ class Book:
             LEFT JOIN authors AS faved_by
             ON favorites.author_id = faved_by.id
             WHERE books.id = %(id)s;"""
-        result = connectToMySQL(cls.db).query_db(query, faving_author_data)
-        this_book = cls(result[0])
-        for row in result:
-            if row['authors.id']:
+        data = {
+            "id": id
+        }
+        results = connectToMySQL(cls.db).query_db(query, data)
+        this_book = cls(results[0])
+        print(this_book)
+        for faving_author in results:
+            if faving_author['faved_by.id'] != None:
                 faving_author_data = {
-                    "id": row["authors.id"],
-                    "name": row["name"],
-                    "created_at": row["authors.created_at"],
-                    "updated_at": row["authors.updated_at"],
-                    "book_id": row["book_id"]}
+                    "id": faving_author["faved_by.id"],
+                    "name": faving_author["name"],
+                    "created_at": faving_author["faved_by.created_at"],
+                    "updated_at": faving_author["faved_by.updated_at"],
+                    "book_id": faving_author["book_id"]}
                 this_book.faved_by.append(author.Author(faving_author_data))
-        print("One book and authors who faved it:", result)
+        print("One book and authors who faved it:", this_book)
         return this_book
         

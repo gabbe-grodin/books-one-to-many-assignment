@@ -25,5 +25,10 @@ def add_book():
 # ! FORM VIEW (dropdown of all authors who haven't yet favored?)
 @app.route('/book/<int:id>')
 def show_one_book_with_faving_authors(id):
-    this_book = book.Book.get_one_book_with_favoring_authors(id)
-    return render_template('one_book.html', book = this_book)
+    this_books_authors = book.Book.get_one_book_with_favoring_authors(id)
+    return render_template('one_book.html', this_book = this_books_authors)
+
+# ! INVISIBLE (CREATE)
+@app.route('/add/book/<int:id>/to/authors_favs', methods=['POST'])
+def add_book_to_authors_favs(author_id):
+    return redirect(f'/book/{request.form["id"]}', author = author_id)

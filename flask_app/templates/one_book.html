@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ book.title }}</title>
+    <title>{{ this_book.title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
@@ -25,9 +25,9 @@
 
     <main class="flx gap-3">
         <div class="card sm-card row">
-        <h2 class="mb mt">Title: "{{ book.title }}"":</h2>
-        <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
-        <h3>Number of pages: {{ book.pages }}</h3>
+        <h2 class="mb mt">Title: "{{ this_book.title }}"":</h2>
+        <img src="./static/resources/images/3563199.png" alt="" id="this_book-img" class="mb">
+        <h3>Number of pages: {{ this_book.pages }}</h3>
         <h3>Authors who have chosen this title as a favorite book:</h3>
 
 
@@ -59,10 +59,10 @@
 
         <!-- ? FORM DROPDOWN START -->
 
-        <form action="/favorite" method="post">
+        <form action="/add/author/to/favoriters" method="post">
             <label for="title">Authors yet to favorite this title:</label>
             <select name="book" id="">
-                {% for author not in this_book.faved_by %}
+                {% for author in this_book.faved_by %}
                     <option value="{{ author.name }}">
                         {{ author.name }}
                     </option>

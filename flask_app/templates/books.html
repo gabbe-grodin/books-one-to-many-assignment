@@ -64,14 +64,11 @@
           </tr>
         </thead> -->
         <tbody>
-          {% for book in book_list %}
+          {% for a_book in book_list %}
           <tr>
-            <!-- <td>
-              <a href="/book/{{ book.id }}">{{ book.id }}</a>              
-            </td> -->
             <td>
-              <a href="/book/{{ book.id }}">
-                <span class="title">"{{ book.title }}"</span>
+              <a href="/book/{{ a_book.id }}">
+                <span class="title">"{{ a_book.title }}"</span>
               </a>
             </td>
           </tr>
