@@ -21,11 +21,10 @@ def add_author():
 # ! SHOW ALL FAVORED BOOKS
 # ! FORM VIEW
 @app.route('/author/<int:id>')
-def view_one_author(id):
-    this_author = []
-    author.Author.get_one_author_with_favored_books(id)
-    print("class method called", *30)
-    return render_template('one_author.html', this_author = this_author)
+def view_one_author_and_fav_books(id):
+    this_authors_fav_books = author.Author.get_one_author_with_favored_books(id)
+    print("class method called", "*"*30)
+    return render_template('one_author.html', this_author = this_authors_fav_books)
     # author.Author.get_one_author_with_favored_books(id)
     # return render_template('one_author.html', this_author = favorite_books)
 

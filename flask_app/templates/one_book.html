@@ -25,46 +25,62 @@
 
     <main class="flx gap-3">
         <div class="card sm-card row">
-        <h2 class="mb mt">Title: "{{ this_book.title }}"":</h2>
-        <img src="./static/resources/images/3563199.png" alt="" id="this_book-img" class="mb">
-        <h3>Number of pages: {{ this_book.pages }}</h3>
-        <h3>Authors who have chosen this title as a favorite book:</h3>
+            <p>
+                Book title: 
+            </p>
+            <h2 class="title">"{{ this_book.title }}"</h2>
+            <img src="./static/resources/images/3563199.png" alt="" id="this_book-img" class="mb">
+            <p>
+                Number of pages: 
+            </p>
+            <h2>
+                {{ this_book.pages }}
+            </h2>
+            <p>Authors who have favorited this title:</p>
 
 
-        <!-- ? TABLE OF AUTHORS WHO FAVED START -->
+            <!-- ? TABLE OF AUTHORS WHO FAVED START -->
 
-        <table class="font-mono">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Author's name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for author in this_book.faved_by %}
+            <table class="font-mono">
+                <thead>
                     <tr>
-                        <td>{{ author.id }}</td>
-                        <td>{{ author.name }}</td>
+                        <th class="hidden">ID</th>
+                        <th class="hidden">Author's name</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <!-- ? TABLE END -->
-        
+                </thead>
+                <tbody>
+                    {% for faving_author in this_book.faved_by %}
+                        <tr>
+                            <td class="hidden">{{ faving_author.id }}</td>
+                            <td>{{ faving_author.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- ? TABLE END -->
+
         </div>
+
+
+
+
+        <!-- ? RIGHT SIDE -->
+
         <div class="card sm-card">
-        <h2 class="mb mt">Add Author's Favorite</h2>
+            <p class="mt-36 mb">
+                Add<span class="title"> "{{ this_book.title }}"  </span> to an author's favorites:
+            </p>
         
 
 
         <!-- ? FORM DROPDOWN START -->
 
-        <form action="/add/author/to/favoriters" method="post">
-            <label for="title">Authors yet to favorite this title:</label>
-            <select name="book" id="">
-                {% for author in this_book.faved_by %}
-                    <option value="{{ author.name }}">
-                        {{ author.name }}
+        <form action="/add/book/{{this_book.id}}/to/authors_favs" method="post">
+            <label for="author"></label>
+            <select name="author" id="">
+                {% for faving_author in all_authors %}
+                    <option value="{{ faving_author.name }}">
+                        {{ faving_author.name }}
                     </option>
                 {% endfor %}
             </select>

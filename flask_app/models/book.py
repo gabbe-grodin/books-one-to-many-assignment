@@ -39,7 +39,6 @@ class Book:
     
     @classmethod
     def get_one_book_with_favoring_authors(cls, id):
-        print()
         query = """
             SELECT * FROM books
             LEFT JOIN favorites
@@ -50,7 +49,7 @@ class Book:
         data = {
             "id": id
         }
-        results = connectToMySQL(cls.db).query_db(query, data)
+        results = connectToMySQL(cls.db).query_db(query, data) # Results will be a row fo every time the one book object is faved by a new author object list of author objects attached to the faved book object
         this_book = cls(results[0])
         print(this_book)
         for faving_author in results:

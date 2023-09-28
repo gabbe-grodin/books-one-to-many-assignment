@@ -1,6 +1,6 @@
 from flask import render_template, redirect, request, session, flash
 from flask_app import app
-from flask_app.models import book, author
+from flask_app.models import book, author # can import class due to no risk of circular imports, correct? more helpful to import file rather than class into models.
 
 # @app.route('/')
 # def books():
@@ -26,9 +26,20 @@ def add_book():
 @app.route('/book/<int:id>')
 def show_one_book_with_faving_authors(id):
     this_books_authors = book.Book.get_one_book_with_favoring_authors(id)
-    return render_template('one_book.html', this_book = this_books_authors)
+    all_authors = author.Author.get_all_authors()
+    return render_template('one_book.html', this_book = this_books_authors, all_authors = all_authors)
 
 # ! INVISIBLE (CREATE)
 @app.route('/add/book/<int:id>/to/authors_favs', methods=['POST'])
-def add_book_to_authors_favs(author_id):
-    return redirect(f'/book/{request.form["id"]}', author = author_id)
+def add_book_to_authors_favs(id):
+
+    # data = {
+    #         "author_id": author_id
+    #     }
+    
+    # data = {
+    #         "author_id": int(data['author_id']),
+    #         "book_id":int(data['book_id'])
+    #     }
+    faving_author = author.Author.add_a_favorite(id)
+    return redirect(f'/book/{request.form["id"]}', faving_author = faving_author)
