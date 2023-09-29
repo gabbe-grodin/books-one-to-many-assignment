@@ -17,18 +17,30 @@ def add_author():
     return redirect("/")
     # return redirect(f"/author/{request.form['id']}")
 
+
+
+
+
+
 # ! SHOW ONE AUTHOR (READ)
 # ! SHOW ALL FAVORED BOOKS
 # ! FORM VIEW
-@app.route('/author/<int:id>')
-def view_one_author_and_fav_books(id):
-    this_authors_fav_books = author.Author.get_one_author_with_favored_books(id)
-    print("class method called", "*"*30)
-    return render_template('one_author.html', this_author = this_authors_fav_books)
-    # author.Author.get_one_author_with_favored_books(id)
-    # return render_template('one_author.html', this_author = favorite_books)
+@app.route('/author/<int:author_id>')
+def view_one_author_and_fav_books(author_id):
+    this_authors_fav_books = author.Author.get_one_author_with_favored_books(author_id)
+    all_books=book.Book.get_all_books() # this doesn't need to pass anything. it only populates a list of all books.
+    return render_template('one_author.html', this_author = this_authors_fav_books, all_books = all_books)
 
-# ! INVISIBLE (CREATE)
-@app.route('/author/<int:id>/picks/fav', methods=['POST'])
-def author_picks_a_favorite():
-    return redirect(f"/author/{request.form['id']}")
+
+
+
+
+
+# # ! INVISIBLE (CREATE)
+# @app.route('/author/<int:author_id>/picks/fav', methods=['POST']) # Do I need to use the ID variable in this route?
+# def this_author_picks_a_favorite(book_id):
+#     # data = {
+#     #     "book_id": book_id
+#     # }
+#     this_authors_fav_books = book.Book.add_a_favorite(book_id)
+#     return redirect(f"/author/{request.form['author_id']}")

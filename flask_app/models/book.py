@@ -19,6 +19,7 @@ class Book:
             INSERT INTO books(title,pages)
             VALUES(%(title)s,%(pages)s)"""
         data={
+            "id":data[data["id"]],
             "title":data["title"],
             "pages":data["pages"]}
         result=connectToMySQL(cls.db).query_db(query,data)

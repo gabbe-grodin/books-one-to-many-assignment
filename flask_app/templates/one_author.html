@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Author Page</title>
+    <title>{{ this_author.name }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500;600;700;800&display=swap');
@@ -15,7 +15,7 @@
 
     <header class="flx container gap-3">
         <h1 class="mb ml">Book Archive</h1>
-        <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" id="bookshelf-img">
+        <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" class="bookshelf-img">
     </header>
     <!-- ? HEADER END -->
 
@@ -25,8 +25,12 @@
 
     <main class="flx gap-3">
         <div class="card sm-card row">
-        <h2 class="mb mt">{#{{ this_author.name }}#}</h2>
-        <img src="./static/resources/images/3563199.png" alt="" id="book-img" class="mb">
+            <p>
+                Author:
+            </p>
+            <h2 class="mb">{{ this_author.name }}</h2>
+            <!-- <img src="./static/resources/images/3563199.png" alt="" class="mb book-img"> -->
+            <p>Their favorite books:</p>
 
 
 
@@ -34,43 +38,58 @@
 
         <table class="font-mono">
             <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Number of Pages</th>
-            </tr>
+                <tr>
+                    <th class="hidden">ID</th>
+                    <th class="hidden">Title</th>
+                    <th class="hidden">Number of Pages</th>
+                </tr>
             </thead>
             <tbody>
-            {#{% for book in this_author.favorite_books %}
+            {% for book in this_author.favorite_books %}
                 <tr>
-                    <td>{{ book.id }}</td>
-                    <td class="title">{{ book.title }}</td>
-                    <td>{{ book.pages }}</td>
+                    <td class="hidden">{{ book.id }}</td>
+                    <td class="title">"{{ book.title }}"</td>
+                    <td class="hidden">{{ book.pages }}</td>
                 </tr>
-            {% endfor %}#}
+            {% endfor %}
             </tbody>
         </table>
         <!-- ? TABLE END -->
         
         </div>
-        <div class="card sm-card">
-        <h2 class="mb mt">Add Author's Favorite</h2>
         
 
 
-        <!-- ? FORM DROPDOWN START -->
 
-        <form action="" method="post">
-            <label for="title">Book</label>
-            <select name="book" id="">
-                {#{% for book in this_author.favorite_books %}
-                    <option value="{{}}">
-                        {{ book.title }}
-                    </option>
-                {% endfor %}#}
-            </select>
-            <button type="submit">Add this book to favorites/ heart</button>
-        </form>
+
+        <!-- ? RIGHT SIDE -->
+
+        <div class="card sm-card">
+            <p class="mt-36 mb">
+                Add to their favorite books:
+            </p>
+        
+        
+        
+            <!-- ? FORM DROPDOWN START -->
+            
+            <!-- Form's hidden input allows controller method to pass needed ids thru 'favorites' controller using request.form OR you can use a route variable for this. if going the request.form way, watch variables in name in tag, must appear in controller like request.for['author'] -->
+
+            <form action="/author/add/favorite" method="post">
+                <input type="hidden" name="author" value="{{ this_author.id }}">
+                <label for="title"></label>
+                <select name="book" id="" class="w-100 mt mb">
+                    {% for book in all_books %}
+                        <option value="{{ book.id }}">
+                            {{ book.title }}
+                        </option>
+                    {% endfor %}
+                </select>
+                
+                <div class="flx col gap-3 mt vert-cent">
+                <button type="submit" class="btn w-100 mt mb">Add this book to their favorites</button>
+                </div>
+            </form>
         <!-- ? FORM END -->
 
         </div>

@@ -29,9 +29,9 @@ def show_one_book_with_faving_authors(id):
     all_authors = author.Author.get_all_authors()
     return render_template('one_book.html', this_book = this_books_authors, all_authors = all_authors)
 
-# ! INVISIBLE (CREATE)
-@app.route('/add/book/<int:id>/to/authors_favs', methods=['POST'])
-def add_book_to_authors_favs(id):
+# # ! INVISIBLE (CREATE)
+# @app.route('/add/book/<int:id>/to/authors_favs', methods=['POST']) # do I need to use the ID variable in this route?
+# def this_book_added_to_an_authors_favs(author_id): # Would this be the exact same method as this_author_pics_a_favorite in authors.py? And when do I call the thing being passed in author_ID or ID in this case isn't it better to distinguish one foreign key from the other?
 
     # data = {
     #         "author_id": author_id
@@ -41,5 +41,5 @@ def add_book_to_authors_favs(id):
     #         "author_id": int(data['author_id']),
     #         "book_id":int(data['book_id'])
     #     }
-    faving_author = author.Author.add_a_favorite(id)
-    return redirect(f'/book/{request.form["id"]}', faving_author = faving_author)
+    # faving_author = author.Author.add_a_favorite(id)
+    # return redirect(f'/book/{request.form["id"]}', faving_author = faving_author)
