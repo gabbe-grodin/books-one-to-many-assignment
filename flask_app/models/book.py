@@ -12,6 +12,7 @@ class Book:
         self.created_at=data['created_at']
         self.updated_at=data['updated_at']
         self.faved_by=[]
+        self.not_yet_faved_by=[]
 
     @classmethod
     def add_new_book(cls,data):
@@ -50,7 +51,7 @@ class Book:
         data = {
             "id": id
         }
-        results = connectToMySQL(cls.db).query_db(query, data) # Results will be a row fo every time the one book object is faved by a new author object list of author objects attached to the faved book object
+        results = connectToMySQL(cls.db).query_db(query, data) # Results will be a row for every time the one book object is faved by a new author object list of author objects attached to the faved book object
         this_book = cls(results[0])
         print(this_book)
         for faving_author in results:
@@ -64,4 +65,18 @@ class Book:
                 this_book.faved_by.append(author.Author(faving_author_data))
         print("One book and authors who faved it:", this_book)
         return this_book
+    
+    @classmethod
+    def get_one_books_not_yet_faving_authors(cls, id):
+        query ="""SELECT * FROM authors
+            LEFT JOIN favorites
+            ON authors.id = favorites.author_id
+            LEFT JOIN books AS favorite_books
+            ON favorites.book_id = favorite_books.id
+            WHERE authors.id = %(id)s
+            IS NULL;"""
+        data = {
+            "id":id}
+        results = connectToMySQL(cls.db).query_db(query, data) # Results will be a row for every author who has not faved this one book
+        
         

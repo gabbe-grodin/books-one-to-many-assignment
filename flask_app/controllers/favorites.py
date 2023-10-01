@@ -5,8 +5,7 @@ from flask_app.models import author, book
 
 
 @app.route('/book/add/favorite', methods=['POST'])
-def make_association_from_one_book(~
-                                   ):
+def make_association_from_one_book():
     data = {
         "author_id": request.form['author'], # comes from name in form
         "book_id": request.form['book']}

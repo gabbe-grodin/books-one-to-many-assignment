@@ -14,8 +14,8 @@
     <!-- ? HEADER START -->
 
     <header class="flx container gap-3">
-        <h1 class="mb ml">Book Archive</h1>
-        <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" class="bookshelf-img">
+        <h1 class="mb ml">Books</h1>
+        <!-- <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" class="bookshelf-img"> -->
     </header>
     <!-- ? HEADER END -->
 
@@ -48,7 +48,13 @@
             {% for book in this_author.favorite_books %}
                 <tr>
                     <td class="hidden">{{ book.id }}</td>
-                    <td class="title">"{{ book.title }}"</td>
+                    <td class="title">
+                        <a href="/book/{{ book.id }}">
+                            <span class="title">
+                                "{{ book.title }}"
+                            </span>
+                        </a>
+                    </td>
                     <td class="hidden">{{ book.pages }}</td>
                 </tr>
             {% endfor %}
@@ -78,10 +84,10 @@
             <form action="/author/add/favorite" method="post">
                 <input type="hidden" name="author" value="{{ this_author.id }}">
                 <label for="title"></label>
-                <select name="book" id="" class="w-100 mt mb">
+                <select name="book">
                     {% for book in all_books %}
-                        <option value="{{ book.id }}">
-                            {{ book.title }}
+                        <option value="{{ book.id }}" class="title">
+                            "{{ book.title }}"
                         </option>
                     {% endfor %}
                 </select>

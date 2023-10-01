@@ -189,6 +189,11 @@ main {
   height: 105px;
 }
 
+.book-img-sm {
+  width: 60px;
+  height: 40px;
+}
+
 .author-img {
   width: 145px;
   height: 145px;
@@ -228,62 +233,50 @@ form {
   width: 100%;
 }
 
-
 input, .input {
   font-family: monospace;
   width: 95%;
   height: 36px;
   margin: 10px 0;
   font-size: 18px;
-  border: none;
-  border-bottom: 2px solid rgb(136, 0, 255);
+  /* border: none; */
+  /* border-bottom: 2px solid rgb(136, 0, 255); */
+  border: 2px solid rgb(136, 0, 255);
+  border-radius: 5px;
   padding-left: 10px;
 }
 
+:root {
+  --arrow-bg: rgba(255, 255, 255, 0.3);
+  --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9a/Caret_down_font_awesome.svg);
+  --option-bg: white;
+  --select-bg: rgba(255, 255, 255, 0.2);
+}
+
 select {
-  padding-left: 20px;
+  appearance: none;
+  width: 100%;
+  padding: 10px 10px 10px 20px;
   font-size: 2rem;
   color: rgb(104, 17, 107);
-  background-color: rgb(240, 248, 255);
   color: black;
-  height: 36px;
+  height: 46px;
   border-radius: 5px;
   font-family: monospace;
   font-size: 18px;
+  background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    cursor: pointer;
 }
+
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
 
 select:hover {
   background-color: rgb(255, 255, 255);
-}
-
-.checkbox-switch {
-  
-}
-
-.heart-with-gradient {
-  width: 50px;
-  display: inline-block;
-  -webkit-mask: 
-     radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
-     radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
-     linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
-     linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
-  -webkit-mask-size: 50% 50%;
-  -webkit-mask-repeat: no-repeat;
-  mask: 
-     radial-gradient(circle at 60% 65%, red 64%, transparent 65%) top left,
-     radial-gradient(circle at 40% 65%, red 64%, transparent 65%) top right,
-     linear-gradient(to bottom left, red 43%,transparent 43%) bottom left,
-     linear-gradient(to bottom right,red 43%,transparent 43%) bottom right;
-  mask-size: 50% 50%;
-  mask-repeat: no-repeat;
-  background: linear-gradient(red,blue);
-}
-
-.heart-with-gradient::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
 }
 
 /*******************************************/
