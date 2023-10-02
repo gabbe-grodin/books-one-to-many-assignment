@@ -41,8 +41,7 @@ class Book:
     
     @classmethod
     def get_one_book_with_favoring_authors(cls, id):
-        query = """
-            SELECT * FROM books
+        query = """SELECT * FROM books
             LEFT JOIN favorites
             ON books.id = favorites.book_id
             LEFT JOIN authors AS faved_by
@@ -68,15 +67,26 @@ class Book:
     
     @classmethod
     def get_one_books_not_yet_faving_authors(cls, id):
-        query ="""SELECT * FROM authors
+        query ="""SELECT * FROM books
             LEFT JOIN favorites
             ON authors.id = favorites.author_id
-            LEFT JOIN books AS favorite_books
-            ON favorites.book_id = favorite_books.id
+            LEFT JOIN books
+            ON favorites.book_id = books.id
             WHERE authors.id = %(id)s
             IS NULL;"""
         data = {
             "id":id}
         results = connectToMySQL(cls.db).query_db(query, data) # Results will be a row for every author who has not faved this one book
-        
+        this_book = cls(results[0])
+        for author in results:
+            if author['not_yet_faved_by.id'] == None:
+                not_yet_faving_author_data = {
+                    "id": author["not_yet_faving_author_data.id"],
+                    "name": author["name"],
+                    "created_at": author["not_yet_faving_author_data.created_at"],
+                    "updated_at": author["not_yet_faving_author_data.updated_at"]}
+                this_book.not_yet_faved_by.append(author.Author(not_yet_faving_author_data))
+        return this_book
+
+
         

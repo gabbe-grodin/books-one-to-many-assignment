@@ -27,7 +27,12 @@ def add_book():
 def show_one_book_with_faving_authors(id):
     this_books_authors = book.Book.get_one_book_with_favoring_authors(id)
     all_authors = author.Author.get_all_authors()
+    # not_yet_faving_authors = book.Book.get_one_books_not_yet_faving_authors(id)
     return render_template('one_book.html', this_book = this_books_authors, all_authors = all_authors)
+    # return render_template('one_book.html', this_book = this_books_authors, not_yet_faving_authors = not_yet_faving_authors)
+
+
+
 
 # # ! INVISIBLE (CREATE)
 # @app.route('/add/book/<int:id>/to/authors_favs', methods=['POST']) # do I need to use the ID variable in this route?

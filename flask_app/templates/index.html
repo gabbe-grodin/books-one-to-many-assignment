@@ -11,7 +11,8 @@
 </head>
 
 
-  <!-- !    TO DO: ADD FAVORITING FUNCTIONALITY (2 QUERIES, ONE TO GET ONE BOOK WITH AUTHORS WHO FAVED IT AND ONE TO GET ONE BOOK WITH AUTHORS WHO HAVE NOT FAVED IT (BOTH CAN BE USED IN VIEW OF ONE BOOK AND ONE AUTHOR) -->
+  <!-- !    TO DO: IMPLEMENT SKINNY CONTROLLER IN favorites.py
+  <!-- !    TO DO: IN MODELS IMPLEMENT GET ONE BOOK WITH AUTHORS WHO HAVE NOT FAVED IT AND GET ALL AUTHORS WHO HAVE NOT YET FAVED THIS BOOK -->
   <!-- !    TO DO: FIX IMG LOADING ON VIEW ONE PAGES-->
   <!-- !    TO DO: ADD IMG ALTS FOR ACCESSIBILITY -->
   <!-- !    TO DO: HTML VALIDATION -->
@@ -19,16 +20,24 @@
   <!-- *    completed: applied restful routing -->
   <!-- *    completed: added create functionality -->
   <!-- *    completed: view ones rendering -->
+  <!-- *    completed: many-to-many/ favoriting functionality achieved -->
 
   
 <body>
 
   <!-- ? HEADER START -->
 
-  <header class="flx container gap-3">
-    <h1 class="mb ml">Books</h1>
+  <header class="flx container gap-3 space-between">
+    <h1 class="mb ml">Author's Favorite Books</h1>
     <!-- <img src="./static/resources/images/3563199.png" alt="small, vector graphic of an open book" class="book-img-sm"> -->
     <!-- <img src="./static/resources/images/3563210.png" alt="small, vector graphic of books on a shelf" class="bookshelf-img"> -->
+    <!-- <nav>
+      <span>Books</span>
+      <img class="bookshelf-img" src="./static/resources/images/bookshelf-icon.png" alt="">
+      <span>| Authors</span>
+      <img class="author-img-sm" src="./static/resources/images/author-icon.png" alt="">
+      <span>| Home</span>
+    </nav> -->
   </header>
   <!-- ? HEADER END -->
 
@@ -39,7 +48,7 @@
   <main class="flx gap-3">
     <div class="card sm-card row">
       <h2 class="mb mt">Add new author</h2>
-      <img src="./static/resources/images/4926650.png" alt="vector graphic icon of author" class="mb author-img">
+      <img src="./static/resources/images/author-icon.png" alt="vector graphic icon of author" class="mb author-img">
       
 
 
